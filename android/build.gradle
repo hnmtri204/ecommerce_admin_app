@@ -1,0 +1,23 @@
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        // Thêm các phụ thuộc ở đây
+        classpath 'com.android.tools.build:gradle:7.0.0' // Kiểm tra phiên bản mới nhất
+        classpath 'com.google.gms:google-services:4.3.10' // Thay bằng phiên bản mới nhất
+    }
+}
+
+rootProject.buildDir = "../build"
+subprojects {
+    project.buildDir = "${rootProject.buildDir}/${project.name}"
+}
+subprojects {
+    project.evaluationDependsOn(":app")
+}
+
+tasks.register("clean", Delete) {
+    delete rootProject.buildDir
+}
